@@ -9,12 +9,12 @@ import styles from "./home-page.module.css";
 const HomePage = () => {
   const { podcasts, setAuthorDetail } = useAppContext();
   const [filterValue, setFilterValue] = useState("");
-  const [isLoading, setIsLoading] = useState(true); // Estado de carga
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     if (podcasts) {
-      setIsLoading(false); // Establece isLoading a false cuando podcasts no es null
+      setIsLoading(false);
     }
   }, [podcasts]);
 

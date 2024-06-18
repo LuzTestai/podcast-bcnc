@@ -46,6 +46,6 @@ git clone https://github.com/LuzTestai/podcast-bcnc.git
 
 USO
 1 ) Inicio de la aplicación : npm run dev
-2 ) Abre tu navegador web y accede a http://localhost:5173/ para ver la aplicación en funcionamiento.
+2 ) Abre tu navegador web y accede a http://localhost:3000 para ver la aplicación en funcionamiento.
 
 ```

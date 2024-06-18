@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useAppContext } from "@/context/context";
 import { cortarStrPorGuionOComa } from "@/lib/index";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import styles from "./home-page.module.css";
+import CardProduct from "../cardProduct";
 
 const HomePage = () => {
   const { podcasts, setAuthorDetail } = useAppContext();
@@ -60,28 +60,21 @@ const HomePage = () => {
             />
           </div>
           <div className={styles.containerHome}>
-            {filteredPodcasts.length > 0 ? (
-              filteredPodcasts.map((podcast) => (
+            {filteredPodcasts.map((podcast) => {
+              return (
                 <div
                   key={podcast.title.label}
                   onClick={() => handleLinkClick(podcast)}
                   className={styles.clickPodcast}
                 >
-                  <div>
-                    <p>{podcast.title.label}</p>
-                    <p>{podcast["im:artist"].label}</p>
-                    <Image
-                      src={podcast["im:image"][1].label}
-                      alt={podcast.title.label}
-                      width={100}
-                      height={100}
-                    />
-                  </div>
+                  <CardProduct
+                    title={podcast.title.label}
+                    autor={podcast["im:artist"].label}
+                    image={podcast["im:image"][1].label}
+                  />
                 </div>
-              ))
-            ) : (
-              <p>No hay podcasts por el momento</p>
-            )}
+              );
+            })}
           </div>
         </div>
       )}

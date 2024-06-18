@@ -54,3 +54,9 @@ export interface AppState {
   authorDetail: AuthorDetail | null;
   setAuthorDetail: React.Dispatch<React.SetStateAction<AuthorDetail | null>>;
 }
+
+export interface CardProductProps {
+  title: string;
+  autor: string;
+  image: string;
+}

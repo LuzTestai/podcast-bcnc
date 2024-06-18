@@ -44,10 +44,10 @@ export interface Feed {
 }
 
 export interface PodcastsData {
+  length: number;
   feed: Feed;
 }
 
-// Define la interfaz para tu estado global
 export interface AppState {
   podcasts: PodcastsData | null;
   setPodcasts: React.Dispatch<React.SetStateAction<PodcastsData | null>>;

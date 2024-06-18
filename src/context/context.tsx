@@ -21,13 +21,12 @@ export const AppProvider: FC<AppProviderProps> = ({ children }) => {
   const [authorDetail, setAuthorDetail] = useState<AuthorDetail | null>(null);
 
   useEffect(() => {
-    // Función para obtener datos
     const fetchData = async () => {
       const data = await fetchPodcasts();
       setPodcasts(data);
     };
 
-    fetchData(); // Llama a la función fetchData al montar el componente
+    fetchData();
   }, []);
 
   return (

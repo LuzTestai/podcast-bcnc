@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  max-width: 30%;
+}
+
+.columnTwo {
+  flex: 1;
+  padding: 20px;
+  max-width: 60%;
+}
+
+.rectangle {
+  background-color: #abb2f952;
+  padding: 20px;
+  width: auto;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.borderBottom {
+  border-bottom: solid 1px #c6cafbe3;
+  padding: 30px 0;
+}
+
+.rectangle img {
+  width: 100%;
+  max-width: 230px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.rectangle h2,
+.rectangle p {
+  margin: 0;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+.row h2 {
+  border: solid 1px #abb2f952;
+  padding: 15px 12px;
+  box-shadow: 5px 2px #abb2f952;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th,
+.td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.th:first-child {
+  width: 70%;
+}
+
+.linkDiv {
+  display: inline-block;
+  padding: 5px 10px;
+  color: #4c63f4;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.linkDiv:hover {
+  color: #001ddb;
+}

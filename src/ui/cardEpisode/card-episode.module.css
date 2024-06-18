@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  max-width: 30%;
+}
+.columnTwo {
+  flex: 1;
+  padding: 20px;
+  max-width: 60%;
+}
+
+.rectangle {
+  background-color: #abb2f952;
+  padding: 20px;
+  width: auto;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.borderBottom {
+  border-bottom: solid 1px #c6cafb;
+  padding: 30px 0;
+}
+
+.rectangle img {
+  width: 100%;
+  max-width: 230px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.rectangle h2,
+.rectangle p {
+  margin: 0;
+}
+
+.row {
+  margin-bottom: 10px;
+}
+.containerDescription {
+  border: solid 1px #0000ff17;
+  padding: 40px 30px;
+  box-shadow: 0 2px 8px rgb(0 27 255 / 10%);
+}
+.containerDescription h2 {
+  border-bottom: solid 1px #0000ff17;
+  padding-bottom: 15px;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.audio {
+  margin-top: 50px;
+  width: 100%;
+  height: 47px;
+}

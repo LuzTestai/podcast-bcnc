@@ -1,0 +1,38 @@
+.containerHome {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 30px 55px;
+}
+.clickPodcast {
+  cursor: pointer;
+}
+.filter {
+  display: flex;
+  justify-content: right;
+  padding: 10px;
+}
+.filter input {
+  border: solid 1px #0000ff75;
+  padding: 8px;
+  border-radius: 8px;
+  min-width: 100px;
+}
+
+.filter input:focus-visible.filterInput {
+  border: solid 1px #6464f563;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 4px;
+  margin-right: 10px;
+}

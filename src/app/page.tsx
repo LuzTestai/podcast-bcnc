@@ -1,11 +1,6 @@
-import Image from "next/image";
+"use client";
+import HomePage from "@/ui/homePage";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        empezamosq
-      </div>
-    </main>
-  );
+  return <HomePage />;
 }

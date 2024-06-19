@@ -14,7 +14,7 @@
 }
 
 .card:hover {
-  box-shadow: 0 0 10px rgba(103, 34, 252, 0.5);
+  box-shadow: 0 0 10px #6c6df0e0;
 }
 .card .image {
   border-radius: 50%;

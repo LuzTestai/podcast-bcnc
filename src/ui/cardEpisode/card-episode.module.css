@@ -14,7 +14,8 @@
 }
 
 .rectangle {
-  background-color: #abb2f952;
+  background-color: #edeef821;
+  box-shadow: 4px 6px 6px #bdbdbd54;
   padding: 20px;
   width: auto;
   max-width: 250px;
@@ -43,9 +44,9 @@
   margin-bottom: 10px;
 }
 .containerDescription {
-  border: solid 1px #0000ff17;
+  border: solid 1px #0f0f0f17;
   padding: 40px 30px;
-  box-shadow: 0 2px 8px rgb(0 27 255 / 10%);
+  box-shadow: 4px 6px 6px #bdbdbd54;
 }
 .containerDescription h2 {
   border-bottom: solid 1px #0000ff17;

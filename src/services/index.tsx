@@ -41,18 +41,12 @@ export const fetchPodcastForName = async (
 export const fetchEpisodeDetail = async (
   episodeFeed: string
 ): Promise<EpisodeDetail | undefined> => {
-  console.log("ENTRO");
   try {
-    console.log("ENTRO 2222");
-    // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    // const response = await fetch(`${proxyUrl}${episodeFeed}`);
-
     const proxyUrl = `${apiBaseUrl}/proxy?url=${encodeURIComponent(
       episodeFeed
     )}`;
     const response = await fetch(proxyUrl);
 
-    // const response = await fetch(`${episodeFeed}`);
     const xmlData = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlData, "text/xml");
@@ -60,7 +54,6 @@ export const fetchEpisodeDetail = async (
 
     const firstItem = items[0];
     if (firstItem) {
-      console.log("ENTRE AL IF EN SERVIDES ", firstItem);
       const titleElement = xmlDoc.querySelector("title");
       const firstItemDescription = firstItem.querySelector("description");
       const firstItemEnclosure = firstItem.querySelector("enclosure");

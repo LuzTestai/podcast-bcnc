@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HomePage from "@/ui/homePage";
 import { cortarStrPorGuionOComa } from "@/lib/index";
 import { useRouter } from "next/navigation";
@@ -11,6 +11,9 @@ export default function Home() {
   const [filterValue, setFilterValue] = useState("");
   const router = useRouter();
 
+  useEffect(() => {
+    console.log("ACA EN HOME PAGE", podcasts);
+  }, [podcasts]);
   const handleLinkClick = (podcast: any) => {
     const authorData = {
       author: podcast["im:artist"].label,

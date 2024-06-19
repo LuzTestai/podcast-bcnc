@@ -38,7 +38,7 @@ export const useAuthorDetail = () => {
 
   const setAuthorDetail = (detail: any) => {
     localStorage.setItem("authorDetail", JSON.stringify(detail));
-    mutate(detail, false); // Update the SWR cache without revalidation
+    mutate(detail, false);
   };
 
   return { authorDetail: data, setAuthorDetail };

@@ -19,7 +19,11 @@ const DetailPodcast = ({ params }: { params: { name: string } }) => {
   } = useFetchPodforName(params.name);
   const [loading, setLoading] = useState(true);
   const { fetchEpisode } = useFetchEpisode(null);
-
+  useEffect(() => {
+    console.log("podcast: AUTHOR", authorDetail);
+    console.log("podcast: PODCAST", podcastDetail);
+    console.log("podcast: NOMBREEEE", params.name);
+  }, [authorDetail, podcastDetail, params]);
   useEffect(() => {
     if (podcastDetail) {
       setPodcastDetail(podcastDetail);

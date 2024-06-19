@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AppProvider } from "@/context/context"; // Asegúrate de que la ruta es correcta
+import { AppProvider } from "@/context/context";
+import Navbar from "@/ui/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +15,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Navbar />
         <AppProvider>{children}</AppProvider>
       </body>
     </html>

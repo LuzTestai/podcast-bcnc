@@ -1,13 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import HomePage from "@/ui/homePage";
-import { useAppContext } from "@/context/context";
 import { cortarStrPorGuionOComa } from "@/lib/index";
 import { useRouter } from "next/navigation";
-import { useFetchPodcasts } from "@/hooks";
+import { useFetchPodcasts, useAuthorDetail } from "@/hooks";
 
 export default function Home() {
-  const { setAuthorDetail } = useAppContext();
+  const { setAuthorDetail } = useAuthorDetail();
   const { data: podcasts, error, isLoading } = useFetchPodcasts();
   const [filterValue, setFilterValue] = useState("");
   const router = useRouter();

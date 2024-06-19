@@ -1,7 +1,7 @@
 import { EpisodeDetail, PodcastDetailObj, PodcastDetails } from "@/types";
 
 const baseUrl = "https://itunes.apple.com/";
-
+const apiBaseUrl = "/api";
 export const fetchPodcasts = async (): Promise<any> => {
   try {
     const response = await fetch(
@@ -44,7 +44,15 @@ export const fetchEpisodeDetail = async (
   console.log("ENTRO");
   try {
     console.log("ENTRO 2222");
-    const response = await fetch(`${episodeFeed}`);
+    // const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    // const response = await fetch(`${proxyUrl}${episodeFeed}`);
+
+    const proxyUrl = `${apiBaseUrl}/proxy?url=${encodeURIComponent(
+      episodeFeed
+    )}`;
+    const response = await fetch(proxyUrl);
+
+    // const response = await fetch(`${episodeFeed}`);
     const xmlData = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlData, "text/xml");
@@ -70,34 +78,3 @@ export const fetchEpisodeDetail = async (
     console.error(error);
   }
 };
-
-// export const fetchEpisodeDetail = (episodeFeed: string) => {
-//   console.log("EPISODE FEEEEEEED", episodeFeed);
-//   return async () => {
-//     try {
-//       const response = await fetch(`${episodeFeed}`);
-//       const xmlData = await response.text();
-//       const parser = new DOMParser();
-//       const xmlDoc = parser.parseFromString(xmlData, "text/xml");
-//       const items = xmlDoc.querySelectorAll("item");
-
-//       const firstItem = items[0];
-//       if (firstItem) {
-//         const titleElement = xmlDoc.querySelector("title");
-//         const firstItemDescription = firstItem.querySelector("description");
-//         const firstItemEnclosure = firstItem.querySelector("enclosure");
-//         const title = titleElement ? titleElement.textContent : "";
-//         const description = firstItemDescription
-//           ? firstItemDescription.textContent
-//           : "";
-//         const enclosure = firstItemEnclosure
-//           ? firstItemEnclosure.getAttribute("url")
-//           : "";
-//         //    dispatch(fillDetailEpisode({title, description, enclosure}))
-//         return { title, description, enclosure };
-//       }
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-// };

@@ -19,7 +19,6 @@
   box-shadow: 10px 20px #b2a6f41c;
   padding: 20px;
   width: auto;
-  max-width: 290px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -31,9 +30,12 @@
 
 .rectangle img {
   width: 100%;
-  max-width: 230px;
   display: block;
   margin-bottom: 10px;
+}
+.rectangle h2 {
+  font-size: larger;
+  font-weight: 600;
 }
 
 .rectangle h2,
@@ -43,33 +45,39 @@
 
 .row {
   margin-bottom: 10px;
+  padding: 20px 30px;
+}
+
+.cardContent {
+  margin-bottom: 10px;
+  border: solid 1px #abb2f952;
+  padding: 15px 25px;
+  box-shadow: 5px 2px #abb2f952;
+}
+.date {
+  font-size: 13px;
+  margin-bottom: 10px;
 }
 
 .row h2 {
-  border: solid 1px #abb2f952;
-  padding: 15px 12px;
-  box-shadow: 5px 2px #abb2f952;
+  font-weight: 400;
 }
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
+.autor {
+  color: #5550e2;
+  font-size: 14px;
 }
-
-.th,
-.td {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-
-.th:first-child {
-  width: 70%;
+.minutes {
+  color: #5550e2;
+  font-size: 12px;
+  padding: 6px 30px;
+  background-color: #acaaea2b;
+  border-radius: 25px;
 }
 
 .linkDiv {
-  display: inline-block;
-  padding: 5px 10px;
-  color: #ab4cf4;
+  font-size: 17px;
+  margin-bottom: 10px;
+  color: #512275;
   text-decoration: none;
   cursor: pointer;
 }

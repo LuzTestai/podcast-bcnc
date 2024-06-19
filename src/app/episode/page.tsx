@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation";
 import { convertirAHTML } from "@/lib";
 import CardEpisode from "@/ui/cardEpisode";
 import styles from "@/ui/cardEpisode/card-episode.module.css";
-import { useAppContext } from "@/context/context";
+import Loading from "@/ui/loading";
+import { useAuthorDetail, useFetchEpisode } from "@/hooks";
 
 const DetailEpisode = () => {
   const router = useRouter();
-  const { authorDetail, episodeDetail } = useAppContext();
+  const { authorDetail } = useAuthorDetail();
+  const { episodeDetail } = useFetchEpisode(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,14 +19,8 @@ const DetailEpisode = () => {
     }
   }, [episodeDetail]);
 
-  useEffect(() => {
-    if (!authorDetail && !episodeDetail && !loading) {
-      router.push("/");
-    }
-  }, [authorDetail, episodeDetail, loading, router]);
-
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (!authorDetail || !episodeDetail) {
@@ -33,17 +29,19 @@ const DetailEpisode = () => {
 
   return (
     <div>
-      <div onClick={() => router.back()} className={styles.cursorPointer}>
-        <CardEpisode
-          title={authorDetail.title}
-          author={authorDetail.author}
-          description={authorDetail.description}
-          image={authorDetail.image}
-          titleEpisode={episodeDetail.title}
-          descriptionEpisode={convertirAHTML(episodeDetail.description)}
-          audio={episodeDetail.enclosure}
-        />
-      </div>
+      {authorDetail && episodeDetail && (
+        <div onClick={() => router.back()} className={styles.cursorPointer}>
+          <CardEpisode
+            title={authorDetail.title}
+            author={authorDetail.author}
+            description={authorDetail.description}
+            image={authorDetail.image}
+            titleEpisode={episodeDetail.title}
+            descriptionEpisode={convertirAHTML(episodeDetail.description)}
+            audio={episodeDetail.enclosure}
+          />
+        </div>
+      )}
     </div>
   );
 };

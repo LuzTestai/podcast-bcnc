@@ -2,8 +2,9 @@
 import React from "react";
 
 import styles from "./home-page.module.css";
-import CardProduct from "../cardProduct";
 import { HomePageProps } from "@/types";
+import CardProduct from "@/ui/cardProduct";
+import Loading from "@/ui/loading";
 
 const HomePage: React.FC<HomePageProps> = ({
   isLoading,
@@ -15,7 +16,7 @@ const HomePage: React.FC<HomePageProps> = ({
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         <div className={styles.container}>
           <div className={styles.filter}>

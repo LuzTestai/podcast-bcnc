@@ -6,6 +6,7 @@ import {
 } from "@/services";
 import { useAppContext } from "@/context/context";
 import { EpisodeDetail } from "@/types";
+import { useEffect, useState } from "react";
 
 const fetcher = async () => {
   const data = await fetchPodcasts();
@@ -38,7 +39,7 @@ export const useAuthorDetail = () => {
 
   const setAuthorDetail = (detail: any) => {
     localStorage.setItem("authorDetail", JSON.stringify(detail));
-    mutate(detail, false); // Update the SWR cache without revalidation
+    mutate(detail, false);
   };
 
   return { authorDetail: data, setAuthorDetail };
@@ -68,55 +69,39 @@ export const useFetchPodforName = (name: string) => {
   return { data, error, isLoading };
 };
 
-const fetcherEpisode = async ([key, episodeFeed]: readonly [
-  string,
-  string
-]): Promise<EpisodeDetail | undefined> => {
-  return await fetchEpisodeDetail(episodeFeed);
-};
+export const useEpisodeDetail = () => {
+  const { episodeDetail, setEpisodeDetail } = useAppContext();
+  const [storedEpisodeDetail, setStoredEpisodeDetail] =
+    useState<EpisodeDetail | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
-export const useFetchEpisode = (episodeFeed: string | null) => {
-  const { data, mutate, error } = useSWR<EpisodeDetail | undefined>(
-    episodeFeed ? ["fetchEpisodeDetail", episodeFeed] : null,
-    fetcherEpisode,
-    {
-      fallbackData: episodeFeed
-        ? null
-        : JSON.parse(localStorage.getItem("episodeDetail") || "null"),
-      revalidateOnFocus: false,
+  useEffect(() => {
+    if (!episodeDetail) {
+      try {
+        const storedData = localStorage.getItem("episodeDetail");
+        if (storedData) {
+          setStoredEpisodeDetail(JSON.parse(storedData));
+        }
+        setIsLoading(false);
+      } catch (e) {
+        setError(new Error());
+        setIsLoading(false);
+      }
+    } else {
+      setIsLoading(false);
     }
-  );
+  }, [episodeDetail]);
 
-  const fetchEpisode = async (episodeFeed: string) => {
-    const episode = await fetcherEpisode([
-      "fetchEpisodeDetail",
-      episodeFeed,
-    ] as const);
-    if (episode) {
-      localStorage.setItem("episodeDetail", JSON.stringify(episode));
-      mutate(episode, false);
+  useEffect(() => {
+    if (episodeDetail) {
+      localStorage.setItem("episodeDetail", JSON.stringify(episodeDetail));
     }
-    return episode;
+  }, [episodeDetail]);
+
+  return {
+    episodeDetail: episodeDetail || storedEpisodeDetail,
+    isLoading,
+    error,
   };
-
-  return { episodeDetail: data, fetchEpisode, error };
 };
-
-// const fetcherEpisode = async (url: string, pod: string) => {
-//   const data = await fetchEpisodeDetail(pod);
-//   return data;
-// };
-
-// export const useFetchEpisode = () => {
-//   const { data, error } = useSWR(null, fetcherEpisode, {
-//     revalidateOnFocus: false,
-//   });
-
-//   const fetchEpisode = async (pod: string): Promise<EpisodeDetail> => {
-//     const episode = await fetcherEpisode("fetcherEpisode", pod);
-//     mutate(null, episode, false);
-//     return episode;
-//   };
-
-//   return { data, error, fetchEpisode };
-// };

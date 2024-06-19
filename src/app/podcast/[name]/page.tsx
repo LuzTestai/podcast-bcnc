@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import CardDetail from "@/ui/cardDetail";
 import { useAppContext } from "@/context/context";
-import { useFetchPodforName, useFetchEpisode } from "@/hooks";
+import { useFetchPodforName } from "@/hooks";
 import { useAuthorDetail } from "@/hooks";
 import Loading from "@/ui/loading";
 import { EpisodeDetail } from "@/types";
+import { fetchEpisodeDetail } from "@/services/index";
 
 const DetailPodcast = ({ params }: { params: { name: string } }) => {
   const router = useRouter();
@@ -18,7 +19,6 @@ const DetailPodcast = ({ params }: { params: { name: string } }) => {
     isLoading: isFetching,
   } = useFetchPodforName(params.name);
   const [loading, setLoading] = useState(true);
-  const { fetchEpisode } = useFetchEpisode(null);
 
   useEffect(() => {
     if (podcastDetail) {
@@ -32,9 +32,9 @@ const DetailPodcast = ({ params }: { params: { name: string } }) => {
   const onClickEpisode = async (pod: string) => {
     setLoading(true);
     try {
-      const episode = await fetchEpisode(pod);
+      const episode = await fetchEpisodeDetail(pod);
       if (episode) {
-        setEpisodeDetail(episode as EpisodeDetail);
+        setEpisodeDetail(episode);
         router.push("/episode");
       }
     } catch (error) {
@@ -43,6 +43,20 @@ const DetailPodcast = ({ params }: { params: { name: string } }) => {
       setLoading(false);
     }
   };
+  // const onClickEpisode = async (pod: string) => {
+  //   setLoading(true);
+  //   try {
+  //     const episode = await useFetchEpisode(pod);
+  //     if (episode) {
+  //       setEpisodeDetail(episode as EpisodeDetail);
+  //       router.push("/episode");
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to fetch episode:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   if (loading || isFetching) {
     return <Loading />;

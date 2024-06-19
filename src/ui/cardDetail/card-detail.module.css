@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .column {
@@ -9,14 +10,14 @@
 }
 
 .columnTwo {
-  flex: 1;
+  flex: 2;
   padding: 20px;
-  max-width: 60%;
+  max-width: 70%;
 }
 
 .rectangle {
-  background-color: #e0ddf71c;
-  box-shadow: 10px 20px #b2a6f41c;
+  background-color: #f8f8fbba;
+  box-shadow: 4px 6px 6px #bdbdbd54;
   padding: 20px;
   width: auto;
   overflow: hidden;
@@ -24,18 +25,15 @@
 }
 
 .borderBottom {
-  border-bottom: solid 1px #dee1fce3;
-  padding: 30px 0;
+  border-bottom: solid 1px #0000003d;
+  padding: 20px 0;
 }
 
 .rectangle img {
   width: 100%;
+  max-width: 230px;
   display: block;
   margin-bottom: 10px;
-}
-.rectangle h2 {
-  font-size: larger;
-  font-weight: 600;
 }
 
 .rectangle h2,
@@ -44,44 +42,71 @@
 }
 
 .row {
-  margin-bottom: 10px;
-  padding: 20px 30px;
-}
-
-.cardContent {
-  margin-bottom: 10px;
-  border: solid 1px #abb2f952;
-  padding: 15px 25px;
-  box-shadow: 5px 2px #abb2f952;
-}
-.date {
-  font-size: 13px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .row h2 {
-  font-weight: 400;
+  border: solid 1px #bdbdbd38;
+  padding: 15px 12px;
+  box-shadow: 3px 3px #bdbdbd38;
 }
-.autor {
-  color: #5550e2;
-  font-size: 14px;
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
 }
-.minutes {
-  color: #5550e2;
-  font-size: 12px;
-  padding: 6px 30px;
-  background-color: #acaaea2b;
-  border-radius: 25px;
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 10px 15px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f8f8f8;
 }
 
 .linkDiv {
-  font-size: 17px;
-  margin-bottom: 10px;
-  color: #512275;
+  display: inline-block;
+  padding: 5px 10px;
+  color: #3c4ec5;
   text-decoration: none;
   cursor: pointer;
 }
 
 .linkDiv:hover {
-  color: #8700db;
+  color: #6c6df0e0;
+}
+
+.table th:first-child {
+  width: 70%;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .rectangle {
+    width: 100%;
+  }
+  .column {
+    max-width: 100%;
+  }
+  .rectangle img {
+    width: 100%;
+    max-width: 100%;
+  }
+  .table {
+    width: 90%; /* Ocupa el 90% del ancho en pantallas pequeñas */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+  }
+  .table th:first-child {
+    width: 40%;
+  }
 }

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HomePage from "@/ui/homePage";
 import { cortarStrPorGuionOComa } from "@/lib/index";
 import { useRouter } from "next/navigation";

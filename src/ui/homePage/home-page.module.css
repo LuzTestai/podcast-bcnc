@@ -13,14 +13,14 @@
   padding: 10px;
 }
 .filter input {
-  border: solid 1px #a0a1ff;
+  border: solid 1px #6c6df0e0;
   padding: 8px;
   border-radius: 8px;
   min-width: 100px;
 }
 
 .filter input:focus-visible.filterInput {
-  border: solid 1px #c564f563;
+  border: solid 1px #6c6df0e0;
 }
 
 .container {
@@ -31,7 +31,7 @@
 .badge {
   display: flex;
   padding: 5px 10px;
-  background-color: #a0a1ff;
+  background-color: #6c6df0e0;
   color: #ffffff;
   border-radius: 4px;
   margin-right: 10px;

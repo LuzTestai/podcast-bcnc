@@ -3,79 +3,68 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import CardDetail from "@/ui/cardDetail";
 import { useAppContext } from "@/context/context";
-import { fetchPodcastForName, fetchEpisodeDetail } from "@/services";
-import { PodcastDetailObj } from "@/types";
+import { useFetchPodforName, useFetchEpisode } from "@/hooks";
+import { useAuthorDetail } from "@/hooks";
+import Loading from "@/ui/loading";
+import { EpisodeDetail } from "@/types";
 
 const DetailPodcast = ({ params }: { params: { name: string } }) => {
   const router = useRouter();
+  const { setPodcastDetail, setEpisodeDetail } = useAppContext();
+  const { authorDetail } = useAuthorDetail();
   const {
-    authorDetail,
-    setAuthorDetail,
-    podcastDetail,
-    setPodcastDetail,
-    setEpisodeDetail,
-  } = useAppContext();
+    data: podcastDetail,
+    error,
+    isLoading: isFetching,
+  } = useFetchPodforName(params.name);
   const [loading, setLoading] = useState(true);
+  const { fetchEpisode } = useFetchEpisode(null);
 
   useEffect(() => {
-    if (!authorDetail && !loading) {
-      router.push("/");
+    if (podcastDetail) {
+      setPodcastDetail(podcastDetail);
+      setLoading(false);
+    } else if (error) {
+      setLoading(false);
     }
-  }, [authorDetail, loading, router]);
+  }, [podcastDetail, error, setPodcastDetail]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const data = await fetchPodcastForName(params.name);
-      if (data) {
-        setPodcastDetail(data);
-      } else {
-        router.push("/");
+  const onClickEpisode = async (pod: string) => {
+    setLoading(true);
+    try {
+      const episode = await fetchEpisode(pod);
+      if (episode) {
+        setEpisodeDetail(episode as EpisodeDetail);
+        router.push("/episode");
       }
+    } catch (error) {
+      console.error("Failed to fetch episode:", error);
+    } finally {
       setLoading(false);
-    };
-
-    fetchData();
-  }, [params.name, setAuthorDetail, router, setPodcastDetail]);
-
-  const onClickEpisode = (pod: string) => {
-    console.log("ACA EL POD", pod);
-    const fetchData = async () => {
-      setLoading(true);
-      const data = await fetchEpisodeDetail(pod);
-      if (data) {
-        console.log("ACA EPISODIO", data);
-        setEpisodeDetail(data);
-      } else {
-        console.log("error");
-        // router.push("/");
-      }
-      setLoading(false);
-    };
-    fetchData().then(() => {
-      router.push("/episode");
-    });
+    }
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
+  if (loading || isFetching) {
+    return <Loading />;
   }
 
-  if (!authorDetail || !podcastDetail) {
+  if (!podcastDetail) {
     return <p>Podcast not found</p>;
   }
 
   return (
     <div>
-      <CardDetail
-        title={authorDetail.title}
-        author={authorDetail.author}
-        description={authorDetail.description}
-        episodes={podcastDetail.length}
-        podcastDetail={podcastDetail}
-        image={authorDetail.image}
-        onClickEpisodeProp={onClickEpisode}
-      />
+      {podcastDetail && (
+        <CardDetail
+          title={authorDetail?.title || "Unknown Title"}
+          author={authorDetail?.author || "Unknown Author"}
+          description={authorDetail?.description || "No Description"}
+          episodes={podcastDetail.length}
+          podcastDetail={podcastDetail}
+          image={authorDetail?.image}
+          onClickEpisodeProp={onClickEpisode}
+        />
+      )}
     </div>
   );
 };

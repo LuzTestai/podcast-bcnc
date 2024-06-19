@@ -12,7 +12,6 @@ const DetailEpisode = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log("episode", episodeDetail);
     if (episodeDetail) {
       setLoading(false);
     }
@@ -34,7 +33,6 @@ const DetailEpisode = () => {
 
   return (
     <div>
-      <h1>hola</h1>
       <div onClick={() => router.back()} className={styles.cursorPointer}>
         <CardEpisode
           title={authorDetail.title}

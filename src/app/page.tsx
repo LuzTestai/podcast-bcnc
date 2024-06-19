@@ -1,21 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HomePage from "@/ui/homePage";
 import { useAppContext } from "@/context/context";
 import { cortarStrPorGuionOComa } from "@/lib/index";
 import { useRouter } from "next/navigation";
+import { useFetchPodcasts } from "@/hooks";
 
 export default function Home() {
-  const { podcasts, setAuthorDetail } = useAppContext();
+  const { setAuthorDetail } = useAppContext();
+  const { data: podcasts, error, isLoading } = useFetchPodcasts();
   const [filterValue, setFilterValue] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
-
-  useEffect(() => {
-    if (podcasts) {
-      setIsLoading(false);
-    }
-  }, [podcasts]);
 
   const handleLinkClick = (podcast: any) => {
     const authorData = {
@@ -35,12 +30,17 @@ export default function Home() {
   };
 
   const filteredPodcasts =
-    podcasts?.feed.entry.filter((podcast) => {
-      const filterText = filterValue.toLowerCase();
-      const title = podcast.title.label.toLowerCase();
-      const artist = podcast["im:artist"].label.toLowerCase();
-      return title.startsWith(filterText) || artist.startsWith(filterText);
-    }) || [];
+    podcasts?.feed.entry.filter(
+      (podcast: {
+        [x: string]: { label: string };
+        title: { label: string };
+      }) => {
+        const filterText = filterValue.toLowerCase();
+        const title = podcast.title.label.toLowerCase();
+        const artist = podcast["im:artist"].label.toLowerCase();
+        return title.startsWith(filterText) || artist.startsWith(filterText);
+      }
+    ) || [];
 
   return (
     <HomePage

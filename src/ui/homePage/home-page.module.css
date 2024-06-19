@@ -13,7 +13,7 @@
   padding: 10px;
 }
 .filter input {
-  border: solid 1px #aa00ff75;
+  border: solid 1px #a0a1ff;
   padding: 8px;
   border-radius: 8px;
   min-width: 100px;
@@ -29,10 +29,12 @@
 }
 
 .badge {
-  display: inline-block;
+  display: flex;
   padding: 5px 10px;
-  background-color: #b700ff;
+  background-color: #a0a1ff;
   color: #ffffff;
   border-radius: 4px;
   margin-right: 10px;
+  text-align: center;
+  align-items: center;
 }

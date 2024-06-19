@@ -1,0 +1,38 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: solid 1px #a0a1ff;
+  margin-bottom: 30px;
+}
+
+.navbar .title {
+  color: #a0a1ff;
+  margin: 0;
+  cursor: pointer;
+}
+
+.navbar .description {
+  margin: 0;
+}
+
+@keyframes blinking {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.spinnerNavbar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #3636ffa6;
+  animation: blinking 1s infinite;
+}

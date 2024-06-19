@@ -50,7 +50,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
                 <tr key={pod.collectionId}>
                   <td className={styles.td}>
                     <div
-                      onClick={() => onClickEpisodeProp(pod.trackViewUrl)}
+                      onClick={() => onClickEpisodeProp(pod.feedUrl)}
                       className={styles.linkDiv}
                     >
                       {pod.collectionName}

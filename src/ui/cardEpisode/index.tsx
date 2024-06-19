@@ -3,6 +3,7 @@ import styles from "./card-episode.module.css";
 import Image from "next/image";
 import { convertirAHTML } from "@/lib";
 import { CardEpisodeProps } from "@/types";
+import DOMPurify from "dompurify";
 
 const CardEpisode: React.FC<CardEpisodeProps> = ({
   title,
@@ -13,6 +14,9 @@ const CardEpisode: React.FC<CardEpisodeProps> = ({
   descriptionEpisode,
   audio,
 }) => {
+  const sanitizedDescription = DOMPurify.sanitize(
+    convertirAHTML(descriptionEpisode)
+  );
   return (
     <div className={styles.container}>
       <div className={styles.column}>
@@ -42,7 +46,7 @@ const CardEpisode: React.FC<CardEpisodeProps> = ({
           <div>
             <div
               dangerouslySetInnerHTML={{
-                __html: convertirAHTML(descriptionEpisode),
+                __html: sanitizedDescription,
               }}
             />
 

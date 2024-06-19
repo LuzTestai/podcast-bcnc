@@ -13,7 +13,10 @@ const DetailEpisode = () => {
 
   useEffect(() => {
     console.log("episode", episodeDetail);
-  }, []);
+    if (episodeDetail) {
+      setLoading(false);
+    }
+  }, [episodeDetail]);
 
   useEffect(() => {
     if (!authorDetail && !episodeDetail && !loading) {

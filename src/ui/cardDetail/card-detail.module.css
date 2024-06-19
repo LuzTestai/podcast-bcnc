@@ -15,16 +15,17 @@
 }
 
 .rectangle {
-  background-color: #abb2f952;
+  background-color: #e0ddf71c;
+  box-shadow: 10px 20px #b2a6f41c;
   padding: 20px;
   width: auto;
-  max-width: 250px;
+  max-width: 290px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .borderBottom {
-  border-bottom: solid 1px #c6cafbe3;
+  border-bottom: solid 1px #dee1fce3;
   padding: 30px 0;
 }
 
@@ -68,11 +69,11 @@
 .linkDiv {
   display: inline-block;
   padding: 5px 10px;
-  color: #4c63f4;
+  color: #ab4cf4;
   text-decoration: none;
   cursor: pointer;
 }
 
 .linkDiv:hover {
-  color: #001ddb;
+  color: #8700db;
 }

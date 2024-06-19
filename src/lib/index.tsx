@@ -1,5 +1,3 @@
-import React from "react";
-
 export const cortarStrPorGuionOComa = (str: string) => {
   const indexGuion = str.indexOf("-");
   const indexComa = str.indexOf(",");
@@ -16,7 +14,6 @@ export const convertirFecha = (fecha: string | number | Date) => {
 };
 
 export const convertirDuracion = (duracionSegundos: number) => {
-  console.log("ACA LA DURACION:", duracionSegundos);
   const horas = Math.floor(duracionSegundos / 3600);
   const minutos = Math.floor((duracionSegundos % 3600) / 60);
   const segundos = duracionSegundos % 60;
@@ -28,8 +25,9 @@ export const convertirDuracion = (duracionSegundos: number) => {
   return duracionFormateada;
 };
 
-export const convertirAHTML = (stringHTML: string) => {
+export const convertirAHTML = (stringHTML: string | null) => {
+  if (!stringHTML) return "";
   const divElement = document.createElement("div");
   divElement.innerHTML = stringHTML;
-  return divElement.innerHTML;
+  return divElement.textContent || divElement.innerText || "";
 };

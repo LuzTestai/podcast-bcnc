@@ -41,44 +41,34 @@ export const fetchPodcastForName = async (
 export const fetchEpisodeDetail = async (
   episodeFeed: string
 ): Promise<EpisodeDetail | undefined> => {
+  console.log("ENTRO");
   try {
+    console.log("ENTRO 2222");
     const response = await fetch(`${episodeFeed}`);
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-
     const xmlData = await response.text();
     const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(xmlData, "application/xml");
-
+    const xmlDoc = parser.parseFromString(xmlData, "text/xml");
     const items = xmlDoc.querySelectorAll("item");
 
-    if (items.length === 0) {
-      console.error("No items found in the RSS feed");
-      return undefined;
-    }
-
     const firstItem = items[0];
-    const titleElement = firstItem.querySelector("title");
-    const firstItemDescription = firstItem.querySelector("description");
-    const firstItemEnclosure = firstItem.querySelector("enclosure");
-
-    const title = titleElement ? titleElement.textContent || "" : "";
-    const description = firstItemDescription
-      ? firstItemDescription.textContent || ""
-      : "";
-    const enclosure = firstItemEnclosure
-      ? firstItemEnclosure.getAttribute("url") || ""
-      : "";
-
-    const episode: EpisodeDetail = { title, description, enclosure };
-
-    console.log("ADENTRO DE FETCH BUSCANDO EPISODE:", episode);
-    return episode;
+    if (firstItem) {
+      console.log("ENTRE AL IF EN SERVIDES ", firstItem);
+      const titleElement = xmlDoc.querySelector("title");
+      const firstItemDescription = firstItem.querySelector("description");
+      const firstItemEnclosure = firstItem.querySelector("enclosure");
+      const title = titleElement ? titleElement.textContent : "";
+      const description = firstItemDescription
+        ? firstItemDescription.textContent
+        : "";
+      const enclosure = firstItemEnclosure
+        ? firstItemEnclosure.getAttribute("url")
+        : "";
+      const episode = { title, description, enclosure };
+      return episode;
+    }
   } catch (error) {
-    console.error("Fetch error:", error);
+    console.error(error);
   }
-  return undefined;
 };
 
 // export const fetchEpisodeDetail = (episodeFeed: string) => {

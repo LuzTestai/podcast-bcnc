@@ -130,11 +130,12 @@ export interface CardEpisodeProps {
   title: string;
   author: string;
   description: string;
-  titleEpisode: string;
+  titleEpisode: string | null;
   image: string;
   descriptionEpisode: string;
   audio: any;
 }
+
 export interface AppState {
   podcasts: PodcastsData | null;
   setPodcasts: React.Dispatch<React.SetStateAction<PodcastsData | null>>;

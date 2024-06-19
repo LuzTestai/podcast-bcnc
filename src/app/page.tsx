@@ -15,7 +15,6 @@ export default function Home() {
     if (podcasts) {
       setIsLoading(false);
     }
-    console.log("ACA EN HOME", podcasts);
   }, [podcasts]);
 
   const handleLinkClick = (podcast: any) => {

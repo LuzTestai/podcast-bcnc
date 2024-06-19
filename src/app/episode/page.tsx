@@ -1,36 +1,36 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { convertirAHTML } from "@/lib";
 import CardEpisode from "@/ui/cardEpisode";
 import styles from "@/ui/cardEpisode/card-episode.module.css";
 import Loading from "@/ui/loading";
-import { useAuthorDetail, useFetchEpisode } from "@/hooks";
+import { useAuthorDetail } from "@/hooks";
+import { useEpisodeDetail } from "@/hooks";
+import { useAppContext } from "@/context/context";
 
 const DetailEpisode = () => {
-  const router = useRouter();
   const { authorDetail } = useAuthorDetail();
-  const { episodeDetail } = useFetchEpisode(null);
-  const [loading, setLoading] = useState(true);
+  const { episodeDetail, isLoading, error } = useEpisodeDetail();
+  const { setEpisodeDetail } = useAppContext();
 
   useEffect(() => {
-    if (episodeDetail) {
-      setLoading(false);
+    if (episodeDetail && !isLoading) {
+      setEpisodeDetail(episodeDetail);
     }
-  }, [episodeDetail]);
+  }, [episodeDetail, isLoading, setEpisodeDetail]);
 
-  if (loading) {
+  if (isLoading) {
     return <Loading />;
   }
 
-  if (!authorDetail || !episodeDetail) {
+  if (error || !authorDetail || !episodeDetail) {
     return <p>Episode not found</p>;
   }
 
   return (
     <div>
       {authorDetail && episodeDetail && (
-        <div onClick={() => router.back()} className={styles.cursorPointer}>
+        <div className={styles.cursorPointer}>
           <CardEpisode
             title={authorDetail.title}
             author={authorDetail.author}

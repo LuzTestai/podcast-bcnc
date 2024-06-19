@@ -45,7 +45,18 @@ export const fetchEpisodeDetail = async (
     const proxyUrl = `${apiBaseUrl}/proxy?url=${encodeURIComponent(
       episodeFeed
     )}`;
-    const response = await fetch(proxyUrl);
+
+    const response = await fetch(proxyUrl, {
+      method: "GET",
+      credentials: "omit",
+      headers: {
+        "Content-Type": "application/xml",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
     const xmlData = await response.text();
     const parser = new DOMParser();

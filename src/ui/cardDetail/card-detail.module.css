@@ -86,3 +86,27 @@
 .table tr:hover {
   background-color: #f1f1f1;
 }
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .rectangle {
+    width: 100%;
+  }
+  .column {
+    max-width: 100%;
+  }
+  .rectangle img {
+    width: 100%;
+    max-width: 100%;
+  }
+  .table {
+    width: 90%; /* Ocupa el 90% del ancho en pantallas pequeñas */
+    margin: 0 auto; /* Centra la tabla horizontalmente */
+  }
+  .table th:first-child {
+    width: 40%;
+  }
+}

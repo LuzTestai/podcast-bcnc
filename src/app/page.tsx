@@ -11,9 +11,6 @@ export default function Home() {
   const [filterValue, setFilterValue] = useState("");
   const router = useRouter();
 
-  useEffect(() => {
-    console.log("ACA EN HOME PAGE", podcasts);
-  }, [podcasts]);
   const handleLinkClick = (podcast: any) => {
     const authorData = {
       author: podcast["im:artist"].label,

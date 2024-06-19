@@ -7,8 +7,14 @@ import React, {
   ReactNode,
   FC,
 } from "react";
-import fetchPodcasts from "@/services/fetchPodcasts";
-import { AppState, PodcastsData, AuthorDetail } from "@/types";
+import { fetchPodcasts } from "@/services";
+import {
+  AppState,
+  PodcastsData,
+  AuthorDetail,
+  PodcastDetails,
+  EpisodeDetail,
+} from "@/types";
 
 const Context = createContext<AppState | undefined>(undefined);
 
@@ -19,6 +25,12 @@ interface AppProviderProps {
 export const AppProvider: FC<AppProviderProps> = ({ children }) => {
   const [podcasts, setPodcasts] = useState<PodcastsData | null>(null);
   const [authorDetail, setAuthorDetail] = useState<AuthorDetail | null>(null);
+  const [podcastDetail, setPodcastDetail] = useState<PodcastDetails | null>(
+    null
+  );
+  const [episodeDetail, setEpisodeDetail] = useState<EpisodeDetail | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +43,16 @@ export const AppProvider: FC<AppProviderProps> = ({ children }) => {
 
   return (
     <Context.Provider
-      value={{ podcasts, setPodcasts, authorDetail, setAuthorDetail }}
+      value={{
+        podcasts,
+        setPodcasts,
+        authorDetail,
+        setAuthorDetail,
+        podcastDetail,
+        setPodcastDetail,
+        episodeDetail,
+        setEpisodeDetail,
+      }}
     >
       {children}
     </Context.Provider>

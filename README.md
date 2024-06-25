@@ -1,34 +1,43 @@
-# Podcast Challenge :cd:
+# Podcast BCN Challenge :cd:
 
-Este repositorio contiene el código fuente de una aplicación de podcast. La aplicación permite explorar diferentes podcasts y ver detalles de cada episodio.
+Este repositorio contiene el código fuente de una aplicación de podcast. La aplicación permite explorar diferentes podcasts, ver detalles de cada episodio y reproducirlos.
 
 ## Características
 
 - Listado de podcasts disponibles.
 - Detalle de cada podcast con información adicional.
 - Visualización de episodios individuales.
-- Repodructor de audio del episodio seleccionado.
+- Reproductor de audio del episodio seleccionado.
 - Funcionalidad de búsqueda de podcasts por título o nombre de artista.
 
 ## Tecnologías utilizadas
 
-- React: una biblioteca de JavaScript para construir interfaces de usuario.
-- Context API: Una funcionalidad para compartir datos entre componentes sin tener que pasar propiedades manualmente a través de cada nivel de la jerarquía de componentes.
-- NextJs: es un marco de trabajo (framework) de desarrollo web basado en React que facilita la creación de aplicaciones web y sitios web estáticos con capacidades de renderizado del lado del servidor (SSR) y generación estática.
-- Axios: una librería para realizar solicitudes HTTP.
-- CSS Modules: una técnica para modularizar estilos en CSS.
-- React Testing Library: una biblioteca para realizar pruebas de componentes de React.
-- Jest: un framework de pruebas para JavaScript.
+- **React**: Una biblioteca de JavaScript para construir interfaces de usuario. Utilizada por su capacidad de crear componentes reutilizables y su eficiencia en la actualización de la interfaz de usuario.
+- **Next.js**: Un framework de React para aplicaciones web. Utilizado por sus capacidades de renderizado del lado del servidor y generación de sitios estáticos, lo que mejora el rendimiento y la SEO.
+- **TypeScript**: Un superset de JavaScript que añade tipado estático. Utilizado para mejorar la calidad del código y reducir errores.
+- **SWC**: Un compilador de JavaScript y TypeScript escrito en Rust. Utilizado en lugar de Babel por su velocidad y eficiencia en la compilación.
+- **React Testing Library**: Una biblioteca para realizar pruebas de componentes de React. Utilizada para fomentar mejores prácticas de pruebas al interactuar con los componentes de manera similar a como lo haría un usuario.
+- **Jest**: Un framework de pruebas para JavaScript. Utilizado por su integración con React y su capacidad para realizar pruebas unitarias, de integración y snapshot.
+- **CSS Modules**: Una técnica para modularizar estilos en CSS. Utilizada para evitar conflictos de nombres en los estilos y facilitar el mantenimiento del código CSS.
 
 ## Estructura del proyecto
 
 El código fuente se encuentra en el directorio `src` y está organizado de la siguiente manera:
 
-- `components`: contiene los componentes de funcionalidad reutilizables utilizados en la aplicación.
-- `pages`: contiene las páginas principales de la aplicación, los componentes de vista.
-- `context`: contiene los contextos y proveedores para manejar el estado de la aplicación utilizando Context API.
-- `utils`: contiene funciones de utilidad y helpers.
-- `styles`: contiene los archivos CSS utilizados en la aplicación.
+- `app`: Contiene las páginas principales de la aplicación y los archivos de configuración de Next.js.
+  - `__tests__`: Contiene los archivos de pruebas para las páginas principales.
+  - `episode`: Contiene la página y las pruebas relacionadas con los episodios.
+  - `podcast/[name]`: Contiene la página y las pruebas relacionadas con los detalles de cada podcast.
+- `context`: Contiene los contextos utilizados para manejar el estado global de la aplicación.
+- `hooks`: Contiene hooks personalizados para manejar la lógica de la aplicación.
+- `lib`: Contiene funciones de utilidad y helpers.
+- `services`: Contiene los servicios para realizar solicitudes HTTP.
+- `ui`: Contiene los componentes reutilizables utilizados en la aplicación.
+  - `cardDetail`: Contiene el componente y las pruebas relacionadas con la visualización de los detalles del podcast.
+  - `cardEpisode`: Contiene el componente y las pruebas relacionadas con la visualización de los episodios.
+  - `cardProduct`: Contiene el componente y las pruebas relacionadas con la visualización de los productos.
+  - `loading`: Contiene el componente y las pruebas relacionadas con el indicador de carga.
+  - `navbar`: Contiene el componente y las pruebas relacionadas con la barra de navegación.
 
 ## Instalación :rocket:
 
@@ -37,15 +46,35 @@ El código fuente se encuentra en el directorio `src` y está organizado de la s
 ```bash
 git clone https://github.com/LuzTestai/podcast-bcnc.git
 
-
-## Accede al directorio del proyecto
+2. Accede al directorio del proyecto:
   cd podcast-bcnc
 
-## Instala las dependencias del proyecto :
+3. Instala las dependencias del proyecto:
   npm install
 
-USO
-1 ) Inicio de la aplicación : npm run dev
-2 ) Abre tu navegador web y accede a http://localhost:3000 para ver la aplicación en funcionamiento.
-
 ```
+
+## USO:
+
+1.  Inicio de la aplicación en modo desarrollo:
+    npm run dev
+
+2.  Abre tu navegador web y accede a http://localhost:3000/ para ver la aplicación en funcionamiento.
+
+## Construcción del proyecto para producción
+
+    1. Construye el proyecto:
+      npm run build
+
+    2. Inicia el servidor en modo producción:
+      npm start
+
+    3. Accede a http://localhost:3000/ para ver la aplicación en funcionamiento.
+
+## Diseño técnico
+
+La organización de las carpetas y archivos sigue las mejores prácticas para proyectos de React y Next.js, permitiendo una separación clara de responsabilidades y facilitando el mantenimiento y escalabilidad del código. La elección de tecnologías como TypeScript y SWC ayuda a mejorar la calidad del código y el rendimiento de la aplicación.
+
+## Procesador SWC
+
+SWC se eligió en lugar de Babel debido a su alto rendimiento en la compilación de JavaScript y TypeScript. SWC está escrito en Rust, lo que le permite ser significativamente más rápido y eficiente en comparación con Babel. Esto resulta en tiempos de construcción más rápidos y una mejor experiencia de desarrollo. Además, SWC es totalmente compatible con las configuraciones de Babel, lo que facilita la migración y el uso en proyectos existentes.

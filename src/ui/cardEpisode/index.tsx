@@ -52,7 +52,11 @@ const CardEpisode: React.FC<CardEpisodeProps> = ({
             />
 
             <div>
-              <audio controls className={styles.audio}>
+              <audio
+                controls
+                className={styles.audio}
+                data-testid="audio-element"
+              >
                 <source src={audio} type="audio/mpeg" />
                 Tu navegador no soporta el elemento de audio.
               </audio>

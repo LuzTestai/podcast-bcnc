@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./card-product.module.css";
 import Image from "next/image";
 import { cortarStrPorGuionOComa } from "@/lib";

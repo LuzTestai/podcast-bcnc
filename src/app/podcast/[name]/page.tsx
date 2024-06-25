@@ -6,7 +6,6 @@ import { useAppContext } from "@/context/context";
 import { useFetchPodforName } from "@/hooks";
 import { useAuthorDetail } from "@/hooks";
 import Loading from "@/ui/loading";
-import { EpisodeDetail } from "@/types";
 import { fetchEpisodeDetail } from "@/services/index";
 
 const DetailPodcast = ({ params }: { params: { name: string } }) => {
@@ -43,20 +42,6 @@ const DetailPodcast = ({ params }: { params: { name: string } }) => {
       setLoading(false);
     }
   };
-  // const onClickEpisode = async (pod: string) => {
-  //   setLoading(true);
-  //   try {
-  //     const episode = await useFetchEpisode(pod);
-  //     if (episode) {
-  //       setEpisodeDetail(episode as EpisodeDetail);
-  //       router.push("/episode");
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to fetch episode:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   if (loading || isFetching) {
     return <Loading />;

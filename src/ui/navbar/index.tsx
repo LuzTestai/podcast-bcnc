@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./navbar.module.css";
 import { useRouter } from "next/navigation";
 
@@ -11,7 +11,6 @@ const Navbar = () => {
       <h1 className={styles.title} onClick={() => router.push("/")}>
         Podcaster
       </h1>
-      {/* <div className={styles.spinnerNavbar}> </div> */}
     </div>
   );
 };

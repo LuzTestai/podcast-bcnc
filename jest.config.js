@@ -1,7 +1,7 @@
 // jest.config.js
 module.exports = {
   transform: {
-    "^.+\\.tsx?$": "babel-jest",
+    "^.+\\.(t|j)sx?$": ["@swc/jest"],
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   transformIgnorePatterns: ["<rootDir>/node_modules/"],

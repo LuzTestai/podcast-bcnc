@@ -3,8 +3,11 @@ import styles from "./loading.module.css";
 
 const Loading = () => {
   return (
-    <div className={styles.loadingContainer}>
-      <div className={styles.loadingSpinner}></div>
+    <div className={styles.loadingContainer} role="status">
+      <div
+        className={styles.loadingSpinner}
+        data-testid="loading-spinner"
+      ></div>
     </div>
   );
 };
